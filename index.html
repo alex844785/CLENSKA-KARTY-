@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Členská karta – Klub</title>
+  <meta name="theme-color" content="#0b0f14" />
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#0f172a; --ink:#e5eefb; --muted:#98a6bd; --accent:#7cffb2; --line:#1f2a44;
+      --danger:#ff5d5d; --warn:#ffd166; --good:#7cffb2; --shadow: 0 8px 28px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:radial-gradient(80% 60% at 50% -10%,#101725 0,#0b0f14 60%);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter: blur(10px);
+      background:linear-gradient(180deg, rgba(11,15,20,.9), rgba(11,15,20,.55));
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{max-width:960px;margin:0 auto;padding:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#21d4fd 0%, #7cffb2 100%); box-shadow:var(--shadow)}
+    .brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.3px}
+    .tag{font-size:12px;color:var(--muted)}
+    main{padding:32px 20px}
+    .hero{display:grid;gap:18px;margin-bottom:22px}
+    .hero h2{font-size:28px;margin:0 0 4px}
+    .hero p{margin:0;color:var(--muted)}
+    .panel{
+      background:linear-gradient(180deg, rgba(16,23,37,.8), rgba(12,17,25,.8));
+      border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow);
+      padding:18px;
+    }
+    form{display:grid;gap:14px}
+    label{font-size:14px;color:var(--muted);display:block;margin-bottom:6px}
+    input, select, button, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
+      background:#0c1119; color:var(--ink); outline:none;
+    }
+    input:focus, select:focus, textarea:focus{border-color:#2f456c; box-shadow:0 0 0 4px rgba(124,255,178,.12)}
+    .row{display:grid; gap:12px}
+    @media(min-width:720px){ .row{grid-template-columns:1fr 1fr} }
+    .hint{font-size:12px;color:var(--muted);margin-top:6px}
+    .check{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted)}
+    .check input{width:auto;margin-top:2px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+    .btn{
+      cursor:pointer; font-weight:650; letter-spacing:.2px;
+      transition:transform .08s ease, box-shadow .2s ease;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:linear-gradient(135deg,#22d3ee,#7cffb2); color:#031015; border:0}
+    .btn-ghost{background:transparent}
+    .note{font-size:13px;color:var(--muted)}
+    .success{
+      display:none;margin-top:16px; padding:14px; border-radius:12px;
+      background:rgba(124,255,178,.08); border:1px solid rgba(124,255,178,.3); color:var(--good);
+    }
+    .error{display:none;margin-top:10px;color:var(--danger);font-size:13px}
+    .foot{margin-top:26px; font-size:12px; color:var(--muted)}
+    .pill{display:inline-block; padding:4px 10px; border:1px solid var(--line); border-radius:999px; font-size:12px; color:var(--muted)}
+    .embed{width:100%; height:420px; border:1px solid var(--line); border-radius:12px; margin-top:8px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Členská karta</h1>
+        <div class="tag">Prednostne pre študentov vysokých škôl • Dobrovoľné členstvo</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h2>Staň sa členom klubu</h2>
+      <p>Vyplnením prihlášky nižšie a úhradou poplatku sa <strong>dobrovoľne</strong> stávaš členom. Členstvo môžeš kedykoľvek ukončiť písomnou žiadosťou.</p>
+      <div class="pill">Zľavy • Predpredaj lístkov • Komunitné benefity</div>
+    </section>
+
+    <section class="panel">
+      <form id="joinForm" novalidate>
+        <div class="row">
+          <div>
+            <label for="meno">Meno a priezvisko</label>
+            <input id="meno" name="meno" autocomplete="name" required />
+          </div>
+          <div>
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="tel">Telefón</label>
+            <input id="tel" name="tel" type="tel" autocomplete="tel" required />
+          </div>
+          <div>
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+              <option value="">— vyber —</option>
+              <option value="student">Študent VŠ (preferované)</option>
+              <option value="mlady">Mladý do 26 rokov</option>
+              <option value="ostatne">Ostatné</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="poznamka">Poznámka (nepovinné)</label>
+          <textarea id="poznamka" name="poznamka" rows="3" placeholder="Napíš, čo ťa baví / ktorý klub navštevuješ…"></textarea>
+        </div>
+
+        <div class="check">
+          <input type="checkbox" id="souhlas" required />
+          <label for="souhlas">Súhlasím so <a href="#stanovy">stanovami klubu</a> a <a href="#gdpr">spracovaním osobných údajov</a>.</label>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">Odoslať prihlášku</button>
+          <button class="btn btn-ghost" type="button" id="btnDownload">Stiahnuť PDF prihlášku</button>
+        </div>
+        <div class="error" id="err"></div>
+        <div class="success" id="ok">Ďakujeme! Prihláška bola odoslaná. Čoskoro ti príde potvrdzovací e-mail.</div>
+        <div class="note">Po odoslaní dostaneš e-mail s platobnými údajmi. Po pripísaní úhrady aktivujeme kartu.</div>
+      </form>
+    </section>
+
+    <section class="foot" id="stanovy">
+      <h3>Stanovy klubu (PDF)</h3>
+      <p>Vlož súbor <code>stanovy.pdf</code> do rovnakého priečinka ako tento súbor. Zobrazí sa tu náhľad:</p>
+      <iframe class="embed" src="stanovy.pdf#zoom=page-fit" title="Stanovy PDF (nahraj stanovy.pdf)"></iframe>
+    </section>
+
+    <section class="foot" id="gdpr">
+      <h3>GDPR &amp; Odhlásenie členstva</h3>
+      <p>Osobné údaje spracúvame len na účely členského programu a komunikácie o akciách. Členstvo môžeš ukončiť kedykoľvek – napíš na <a href="mailto:info@tvojklub.sk">info@tvojklub.sk</a> s predmetom „Ukončenie členstva“.</p>
+    </section>
+  </main>
+
+  <script>
+    // jednoduché klientské "odoslanie" + uloženie do LocalStorage (na produkcii nahraď za backend / formulárovú službu)
+    const form = document.getElementById('joinForm');
+    const ok = document.getElementById('ok');
+    const err = document.getElementById('err');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      err.style.display = 'none';
+      ok.style.display = 'none';
+
+      const data = {
+        meno: form.meno.value.trim(),
+        email: form.email.value.trim(),
+        tel: form.tel.value.trim(),
+        status: form.status.value,
+        poznamka: form.poznamka.value.trim(),
+        timestamp: new Date().toISOString()
+      };
+
+      if(!data.meno || !data.email || !data.tel || !data.status || !document.getElementById('souhlas').checked){
+        err.textContent = 'Vyplň prosím všetky povinné polia a potvrď súhlas.';
+        err.style.display = 'block';
+        return;
+      }
+
+      // simulované odoslanie: uloží do localStorage (na ostré nasadenie odporúčam Netlify Forms alebo jednoduché API)
+      const list = JSON.parse(localStorage.getItem('clenska_prihlaska') || '[]');
+      list.push(data);
+      localStorage.setItem('clenska_prihlaska', JSON.stringify(list));
+
+      ok.style.display = 'block';
+      form.reset();
+    });
+
+    // generovanie "PDF" prihlášky ako HTML na stiahnutie (user si uloží ako PDF cez tlač)
+    document.getElementById('btnDownload').addEventListener('click', () => {
+      const w = window.open('', '_blank');
+      w.document.write(`
+        <html><head><meta charset="utf-8"><title>Prihláška – tlač</title></head>
+        <body style="font-family:Arial;padding:24px;line-height:1.5">
+          <h2>Prihláška za člena klubu</h2>
+          <p>Vyplň a ulož ako PDF (Ctrl/Cmd+P → Uložiť ako PDF).</p>
+          <hr/>
+          <p>Meno a priezvisko: ____________________________</p>
+          <p>E-mail: ____________________________</p>
+          <p>Telefón: ____________________________</p>
+          <p>Status: študent / mladý do 26 / ostatné</p>
+          <p>Podpis: ____________________________  Dátum: __________</p>
+          <hr/>
+          <p>Potvrdzujem, že som sa oboznámil(a) so stanovami klubu.</p>
+        </body></html>
+      `);
+      w.document.close();
+    });
+  </script>
+</body>
+</html>
